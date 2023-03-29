@@ -1,0 +1,70 @@
+@import "../colors/Colors.scss";
+
+.footer {
+  background-color: $color-black;
+  height: fit-content;
+  color: $color-white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 100px 0 150px 0;
+  flex-wrap: wrap;
+
+  &_item {
+    display: flex;
+    flex-direction: column;
+
+    span,
+    a {
+      margin: 10px 0;
+      color: $color-white;
+    }
+
+    a:hover {
+      color: $color-white;
+      text-decoration: underline;
+    }
+
+    &_title {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 24px;
+    }
+  }
+
+  &_shop {
+    &_sub {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 28px;
+    }
+  }
+
+  &_downloadApp {
+    &_icon {
+      display: flex;
+      flex-direction: row;
+      margin: 10px 0 20px 0;
+      img {
+        margin-right: 10px;
+      }
+
+      .iosVsAndroid {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    }
+
+    &_socialMedia {
+      display: flex;
+      justify-content: space-evenly;
+
+      .icon {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
