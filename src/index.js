@@ -7,12 +7,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import i18n from "./lang/i18n";
 import { I18nextProvider } from "react-i18next";
 import "semantic-ui-css/semantic.min.css";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <I18nextProvider i18n={i18n}>
-      <App />
+      <ProSidebarProvider>
+        <App />
+      </ProSidebarProvider>
     </I18nextProvider>
   </React.StrictMode>
 );

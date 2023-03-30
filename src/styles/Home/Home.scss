@@ -1,0 +1,58 @@
+@import "../variables";
+
+.main {
+  padding: 10px 130px 0 130px;
+  display: flex;
+  flex-direction: column;
+
+  &_header {
+    max-height: 600px;
+
+    &_sidebar {
+      background-color: $color-white;
+      max-height: 600px;
+
+      .ps-sidebar-container {
+        background-color: $color-white !important;
+
+        span {
+          font-weight: 400;
+          font-size: 16px;
+        }
+      }
+    }
+
+    &_slideimage {
+      padding-left: 30px !important;
+      height: 600px;
+      width: 100%;
+    }
+  }
+
+  .div-header-main {
+    color: $color-secondary-second3;
+
+    .div-header-color {
+      height: 40px;
+      width: 20px;
+      border-radius: 4px;
+      background-color: $color-secondary-second3;
+      margin-right: 16px;
+    }
+
+    span {
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+
+  .title-column {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 48px;
+    margin-right: 70px;
+  }
+}
