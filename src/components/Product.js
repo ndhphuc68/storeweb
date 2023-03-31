@@ -2,8 +2,11 @@ import React from "react";
 import "../styles/components/Product.scss";
 import BeautyStars from "beauty-stars";
 import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
+import { useTranslation } from "react-i18next";
 
 const Product = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="product-main d-flex flex-column justify-content-start">
       <div className="product-main_thumnail">
@@ -15,16 +18,19 @@ const Product = () => {
           <span>-25%</span>
         </div>
         <div className="d-flex flex-column product-icon">
-          <div className="icon-product">
+          <a href="/" className="icon-product">
             <AiOutlineHeart className="icon" />
-          </div>
-          <div className="icon-product">
+          </a>
+          <a href="/" className="icon-product">
             <AiOutlineEye className="icon" />
-          </div>
+          </a>
         </div>
+        <a className="add-cart" href="/">
+          <span>{t("addCart")}</span>
+        </a>
       </div>
       <div className="product-main_info">
-        <div className="product-main_info_name-product">Iphone 14</div>
+        <a href="/" className="product-main_info_name-product">Iphone 14</a>
         <div className="product-main_info_price-product">
           <span className="price-sale">$120</span>
           <span className="price-discout">$120</span>

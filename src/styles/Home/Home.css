@@ -84,3 +84,68 @@
   font-size: 0.75rem;
   line-height: 1rem;
 }
+
+.list-products {
+  height: 350px;
+  margin-top: 50px;
+}
+
+.list-category {
+  height: 150px;
+  margin-top: 50px;
+}
+
+.list-our-products {
+  height: 900px;
+}
+
+.button-view-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0 50px 0;
+}
+
+.button-view-all>button {
+  background-color: #db4444;
+  color: white;
+  height: 56px;
+  width: 234px;
+  border-radius: 4px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+}
+
+.big-title button {
+  background-color: #db4444;
+  color: white;
+  width: 159px;
+  height: 56px;
+  border-radius: 4px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  border: none;
+}
+
+.list-our-products {
+  height: 900px;
+}
+
+.list-our-products .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  height: calc((100% - 30px) / 2) !important;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

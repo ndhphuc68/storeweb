@@ -1,0 +1,26 @@
+@import "../variables";
+
+.main-category {
+  height: 145px;
+  width: 170px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+
+  img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+  }
+
+  span {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

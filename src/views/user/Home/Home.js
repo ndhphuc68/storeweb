@@ -5,10 +5,14 @@ import "../../../styles/Home/Home.scss";
 import "../../../styles/Home/Home.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import "swiper/css/grid";
 import "swiper/css/pagination";
-import { Autoplay, Pagination, Navigation } from "swiper";
+import { Autoplay, Pagination, Navigation, FreeMode, Grid } from "swiper";
 import CountdownTimer from "../../../components/CountdownTimer";
 import Product from "../../../components/Product";
+import { useTranslation } from "react-i18next";
+import Line from "../../../components/Line";
+import Category from "../../../components/Category";
 
 const slideImages = [
   {
@@ -25,6 +29,8 @@ const slideImages = [
   },
 ];
 
+const list = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+
 const THREE_DAYS_IN_MS = 3 * 24 * 60 * 60 * 1000;
 const NOW_IN_MS = new Date().getTime();
 
@@ -39,25 +45,143 @@ const DivHeaderMain = (props) => {
   );
 };
 
-const FlashSales = () => {
+const BigTileCategory = (props) => {
+  let justifyContent = {};
+  if (props.viewAll) {
+    justifyContent = { justifyContent: "space-between" };
+  }
   return (
-    <div className="d-flex flex-column" style={{ marginTop: "100px" }}>
-      <DivHeaderMain title={"Today's"} />
-      <div className="d-flex flex-row mt-4 align-items-center">
-        <span className="title-column">Flash Sales</span>
+    <div
+      style={justifyContent}
+      className="d-flex flex-row mt-4 align-items-center big-title"
+    >
+      <span className="title-column">{props.title}</span>
+      {props.countDown ? (
         <CountdownTimer targetDate={dateTimeAfterThreeDays} />
-      </div>
-      <Product />
+      ) : null}
+      {props.viewAll ? <button>{props.t("viewAll")}</button> : null}
+    </div>
+  );
+};
+
+const ProductHome = (props) => {
+  return (
+    <div className="d-flex flex-column" style={{ marginTop: "70px" }}>
+      <DivHeaderMain title={props.smallTitle} />
+      <BigTileCategory
+        t={props.t}
+        title={props.title}
+        countDown={props.countDown || !props.ourProducts}
+        viewAll={props.viewAll}
+      />
+      {props.ourProducts ? (
+        <Swiper
+          slidesPerView={4}
+          grid={{
+            rows: 2,
+          }}
+          spaceBetween={30}
+          modules={[Grid]}
+          className="mySwiper list-our-products"
+        >
+          {list.map((val) => {
+            return (
+              <SwiperSlide key={val}>
+                <Product key={val} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      ) : (
+        <Swiper
+          slidesPerView={5}
+          spaceBetween={30}
+          freeMode={true}
+          modules={[FreeMode, Autoplay]}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          loop={true}
+          className="mySwiper list-products"
+        >
+          {list.map((val) => {
+            return (
+              <SwiperSlide key={val}>
+                <Product key={val} />
+              </SwiperSlide>
+            );
+          })}
+        </Swiper>
+      )}
+
+      {props.countDown || props.ourProducts ? (
+        <div className="button-view-all">
+          <button>{props.t("viewAllProducts")}</button>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+const Categories = () => {
+  return (
+    <div
+      className="d-flex flex-column"
+      style={{ marginTop: "70px", marginBottom: "50px" }}
+    >
+      <DivHeaderMain title={"Categories"} />
+      <BigTileCategory title={"Browse By Category"} />
+      <Swiper
+        navigation={true}
+        slidesPerView={6}
+        spaceBetween={30}
+        freeMode={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        modules={[FreeMode, Autoplay]}
+        className="list-category"
+      >
+        {list.map((val) => {
+          return (
+            <SwiperSlide>
+              <Category />
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
+    </div>
+  );
+};
+
+const BannerSales = () => {
+  return (
+    <div className="banner-main">
+      <img src={require("../../../assets/image/banner.png")} alt="" />
+    </div>
+  );
+};
+
+const NewArrival = (props) => {
+  return (
+    <div className="d-flex flex-column" style={{ marginTop: "70px" }}>
+      <DivHeaderMain title={props.smallTitle} />
+      <BigTileCategory t={props.t} title={props.title} />
     </div>
   );
 };
 
 const Home = (props) => {
+  const { t } = useTranslation();
+
   return (
     <LayoutUser>
       <div className="main">
         <div className="main_header row ">
-          <Sidebar className="main_header_sidebar col-2">
+          <Sidebar className="main_header_sidebar">
             <Menu>
               <SubMenu label="Charts">
                 <MenuItem> Pie charts </MenuItem>
@@ -77,7 +201,7 @@ const Home = (props) => {
               <MenuItem> Calendar </MenuItem>
             </Menu>
           </Sidebar>
-          <div className="main_header_slideimage col-10">
+          <div className="main_header_slideimage">
             <Swiper
               style={{
                 "--swiper-pagination-color": "#db4444",
@@ -96,19 +220,41 @@ const Home = (props) => {
               }}
               loop={true}
               modules={[Autoplay, Pagination, Navigation]}
-              className="mySwiper"
+              className="mySwiper list-banner-top"
             >
               {slideImages.map((val) => {
                 return (
-                  <SwiperSlide>
-                    <img src={val.url} alt={val.caption} />
+                  <SwiperSlide key={val}>
+                    <img key={val} src={val.url} alt={val.caption} />
                   </SwiperSlide>
                 );
               })}
             </Swiper>
           </div>
         </div>
-        <FlashSales />
+        <ProductHome
+          smallTitle={"Today's"}
+          title={"Flash Sales"}
+          t={t}
+          countDown={true}
+        />
+        <Line />
+        <Categories />
+        <Line />
+        <ProductHome
+          smallTitle={"This Month"}
+          title={"Best Selling Products"}
+          t={t}
+          viewAll={true}
+        />
+        <BannerSales />
+        <ProductHome
+          smallTitle={"This Month"}
+          title={"Best Selling Products"}
+          t={t}
+          ourProducts={true}
+        />
+        <NewArrival smallTitle={"Featured"} title={"New Arrivals"} t={t} />
       </div>
     </LayoutUser>
   );
