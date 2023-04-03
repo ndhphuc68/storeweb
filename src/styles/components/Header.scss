@@ -1,10 +1,15 @@
+@import "../variables";
+
 .header {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 70px;
+  height: 90px;
   justify-content: flex-end;
-  padding: 0 150px;
+  padding: 0 150px 20px 150px;
+  z-index: 98;
+  background-color: $color-white;
+  border-bottom: 1px solid $color-gray;
 
   &_shop-name {
     flex: 1;
@@ -22,6 +27,11 @@
 
   &_nav {
     flex: 2;
+
+    .nav-link-activated {
+      text-decoration: underline;
+    }
+
     ul {
       height: 100%;
       display: flex;
@@ -45,6 +55,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
+    position: relative;
 
     .input-search {
       height: 30px;
@@ -54,6 +65,31 @@
       height: 30px;
       width: 30px;
       margin-left: 20px;
+    }
+
+    .header-info-user {
+      width: 224px;
+      height: 208px;
+      position: absolute;
+      transform: translate(70px, 210px);
+      background: rgba(0, 0, 0, 0.5);
+      // background-color: aqua;
+      backdrop-filter: blur(75px);
+      -webkit-backdrop-filter: blur(75px);
+      border-radius: 4px;
+      z-index: 99;
+      align-items: flex-start;
+      justify-content: space-evenly;
+
+      -webkit-user-select: none;
+      user-select: none;
+
+      .link-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-white;
+      }
     }
   }
 }

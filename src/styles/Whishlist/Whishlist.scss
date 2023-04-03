@@ -1,0 +1,28 @@
+@import "../variables";
+
+.whish-list-main {
+  margin: 150px 0 0 0;
+  padding: 10px 250px 0 250px;
+  
+  .title-whish-list {
+    span {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .move-all-whishlist {
+      width: 223px;
+      height: 56px;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 4px;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      background-color: $color-white;
+    }
+  }
+}

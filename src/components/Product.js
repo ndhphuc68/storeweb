@@ -30,17 +30,15 @@ const Product = () => {
         </a>
       </div>
       <div className="product-main_info">
-        <a href="/" className="product-main_info_name-product">Iphone 14</a>
+        <a href="/" className="product-main_info_name-product">
+          Iphone 14
+        </a>
         <div className="product-main_info_price-product">
           <span className="price-sale">$120</span>
           <span className="price-discout">$120</span>
         </div>
         <div className="product-main_info_ratting-product d-flex flex-row">
-          <BeautyStars
-            value={4}
-            size={20}
-            // onChange={value => this.setState({ value })}
-          />
+          <BeautyStars value={4} size={20} />
           <span>(68)</span>
         </div>
       </div>

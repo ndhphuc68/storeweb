@@ -13,6 +13,9 @@ import Product from "../../../components/Product";
 import { useTranslation } from "react-i18next";
 import Line from "../../../components/Line";
 import Category from "../../../components/Category";
+import NewArrivalItem from "../../../components/NewArrivalItem";
+import Image from "../../../styles/image";
+import { AiOutlineArrowUp } from "react-icons/ai";
 
 const slideImages = [
   {
@@ -170,12 +173,60 @@ const NewArrival = (props) => {
     <div className="d-flex flex-column" style={{ marginTop: "70px" }}>
       <DivHeaderMain title={props.smallTitle} />
       <BigTileCategory t={props.t} title={props.title} />
+      <div className="row mb-5 mt-4" style={{ height: "600px" }}>
+        <div className="col-6">
+          <NewArrivalItem />
+        </div>
+        <div className="col-6">
+          <div className="row pb-1" style={{ height: "50%" }}>
+            <NewArrivalItem />
+          </div>
+          <div className="row pt-2" style={{ height: "50%" }}>
+            <div className="col-6 pe-2" style={{ padding: 0 }}>
+              <NewArrivalItem />
+            </div>
+            <div className="col-6 ps-1" style={{ padding: 0 }}>
+              <NewArrivalItem />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Service = () => {
+  return (
+    <div className="d-flex mb-5 mt-5 justify-content-evenly">
+      <div className="d-flex flex-column justify-content-center align-items-center service-item">
+        <img src={Image.car} alt="" />
+        <span>FREE AND FAST DELIVERY</span>
+        <p>Free delivery for all orders over $140</p>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center service-item">
+        <img src={Image.customer} alt="" />
+        <span>24/7 CUSTOMER SERVICE</span>
+        <p>Friendly 24/7 customer support</p>
+      </div>
+      <div className="d-flex flex-column justify-content-center align-items-center service-item">
+        <img src={Image.money} alt="" />
+        <span>MONEY BACK GUARANTEE</span>
+        <p>We reurn money within 30 days</p>
+      </div>
     </div>
   );
 };
 
 const Home = (props) => {
   const { t } = useTranslation();
+
+  const handleScrollTop = () => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <LayoutUser>
@@ -255,6 +306,22 @@ const Home = (props) => {
           ourProducts={true}
         />
         <NewArrival smallTitle={"Featured"} title={"New Arrivals"} t={t} />
+        <Service />
+      </div>
+      <div className="d-flex ps-5 pe-5 mb-5 justify-content-end">
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{
+            width: "46px",
+            height: "46px",
+            backgroundColor: "#F5F5F5",
+            borderRadius: "50%",
+            cursor: "pointer",
+          }}
+          onClick={() => handleScrollTop()}
+        >
+          <AiOutlineArrowUp style={{ width: "24px", height: "24px" }} />
+        </div>
       </div>
     </LayoutUser>
   );

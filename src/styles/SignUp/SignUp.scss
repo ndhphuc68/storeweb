@@ -1,0 +1,59 @@
+@import "../variables";
+
+.sign-up-container {
+  margin: 150px 0 50px 0;
+  padding: 10px 250px 0 250px;
+  height: 700px;
+
+  .row {
+    height: 100%;
+
+    .sign-up-left {
+      background-color: $color-secondary-second4;
+    }
+
+    .sign-up-right {
+      .form-create {
+        height: 70%;
+        h1 {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 36px;
+        }
+
+        span {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        .button-create-gg,
+        .button-create {
+          width: 371px;
+          height: 56px;
+          border-radius: 4px;
+
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+        }
+        .button-create {
+          background-color: $color-button2;
+          color: $color-white;
+          border: none;
+        }
+
+        .button-create-gg {
+          background-color: $color-white;
+          color: $color-black;
+          border: 1px solid $color-gray;
+        }
+      }
+    }
+  }
+}

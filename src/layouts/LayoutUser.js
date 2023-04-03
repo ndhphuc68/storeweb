@@ -1,15 +1,15 @@
 import React from "react";
 import HeaderUser from "../components/HeaderUser";
 import TopHeader from "../components/TopHeader";
-import Line from "../components/Line";
 import Footer from "../components/Footer";
 
 const LayoutUser = ({ children }) => {
   return (
     <div>
-      <TopHeader />
-      <HeaderUser />
-      <Line />
+      <div style={{ position: "fixed", top: 0, width: "100%", zIndex: 88 }}>
+        <TopHeader />
+        <HeaderUser />
+      </div>
       {children}
       <Footer />
     </div>

@@ -1,0 +1,60 @@
+@import "../variables";
+
+.login-container {
+  margin: 150px 0 50px 0;
+  padding: 10px 250px 0 250px;
+  height: 700px;
+
+  .row {
+    height: 100%;
+
+    .login-left {
+      background-color: $color-secondary-second4;
+    }
+
+    .login-right {
+      .form-create {
+        height: 60%;
+        width: 371px;
+
+        h1 {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 36px;
+        }
+
+        span {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+        }
+
+        .button-login {
+          width: 143px;
+          height: 56px;
+          border-radius: 4px;
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 24px;
+          background-color: $color-button2;
+          color: $color-white;
+          border: none;
+        }
+
+        .forget-pass {
+          font-family: "Poppins";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 24px;
+          color: $color-button2;
+        }
+      }
+    }
+  }
+}
