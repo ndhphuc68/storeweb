@@ -1,0 +1,50 @@
+@import "../variables";
+
+.cart-main {
+  margin: 150px 0 0 0;
+  padding: 10px 250px 0 250px;
+
+  .cart-list-product {
+    .thead-cart {
+      height: 72px;
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+      span {
+        flex: 1;
+        text-align: center;
+      }
+    }
+
+    .tbody-cart {
+      margin-top: 50px;
+      .tbody-cart-item {
+        min-height: 72px;
+        border-radius: 4px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+        .name-img {
+          flex: 1;
+          img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+          }
+          span {
+            font-family: "Poppins";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: left;
+          }
+        }
+        span {
+          flex: 1;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

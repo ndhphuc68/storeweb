@@ -54,7 +54,10 @@ const HeaderUser = () => {
       <div className="header_search">
         <Input className="input-search" icon="search" placeholder="Search..." />
         <AiOutlineHeart className="icon-header" />
-        <AiOutlineShoppingCart className="icon-header" />
+        <Link style={{ color: "black" }} to="/cart">
+          <AiOutlineShoppingCart className="icon-header" />
+        </Link>
+
         <FiUser
           className="icon-header"
           style={{ cursor: "pointer" }}

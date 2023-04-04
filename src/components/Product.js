@@ -2,9 +2,10 @@ import React from "react";
 import "../styles/components/Product.scss";
 import BeautyStars from "beauty-stars";
 import { AiOutlineHeart, AiOutlineEye } from "react-icons/ai";
+import { BsTrash3 } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 
-const Product = () => {
+const Product = (props) => {
   const { t } = useTranslation();
 
   return (
@@ -17,14 +18,23 @@ const Product = () => {
         <div className="product-promotion d-flex justify-content-center align-items-center">
           <span>-25%</span>
         </div>
-        <div className="d-flex flex-column product-icon">
-          <a href="/" className="icon-product">
-            <AiOutlineHeart className="icon" />
-          </a>
-          <a href="/" className="icon-product">
-            <AiOutlineEye className="icon" />
-          </a>
-        </div>
+        {props.trash ? (
+          <div className="d-flex flex-column product-icon">
+            <a href="/" className="icon-product">
+              <BsTrash3 className="icon" />
+            </a>
+          </div>
+        ) : (
+          <div className="d-flex flex-column product-icon">
+            <a href="/" className="icon-product">
+              <AiOutlineHeart className="icon" />
+            </a>
+            <a href="/" className="icon-product">
+              <AiOutlineEye className="icon" />
+            </a>
+          </div>
+        )}
+
         <a className="add-cart" href="/">
           <span>{t("addCart")}</span>
         </a>
@@ -37,10 +47,12 @@ const Product = () => {
           <span className="price-sale">$120</span>
           <span className="price-discout">$120</span>
         </div>
-        <div className="product-main_info_ratting-product d-flex flex-row">
-          <BeautyStars value={4} size={20} />
-          <span>(68)</span>
-        </div>
+        {props.trash ? null : (
+          <div className="product-main_info_ratting-product d-flex flex-row">
+            <BeautyStars value={4} size={20} />
+            <span>(68)</span>
+          </div>
+        )}
       </div>
     </div>
   );

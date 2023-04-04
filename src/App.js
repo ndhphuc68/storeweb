@@ -4,7 +4,8 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./views/user/Login/Login";
 import AboutLoading from "./components/AboutLoading";
 import SignUp from "./views/user/SignUp/SignUp";
-import Whishlist from "./views/user/Whishlist/Whishlist";
+import WhishList from "./views/user/Whishlist/Whishlist";
+import Cart from "./views/user/Cart/Cart";
 
 const LazyHome = React.lazy(() => import("./views/user/Home/Home"));
 
@@ -21,7 +22,8 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/sign-up" element={<SignUp />} />
-      <Route path="/whish-list" element={<Whishlist />} />
+      <Route path="/whish-list" element={<WhishList />} />
+      <Route path="/cart" element={<Cart />} />
     </Routes>
   );
 }
