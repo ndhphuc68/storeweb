@@ -9,9 +9,9 @@
     position: relative;
     
     img {
-      width: 270px;
-      height: 250px;
-      object-fit: contain;
+      width: 270px !important;
+      height: 250px !important;
+      object-fit: contain !important;
     }
 
     .product-promotion {

@@ -11,12 +11,23 @@ import { FiUser } from "react-icons/fi";
 import { BiLogOut } from "react-icons/bi";
 import { RiShoppingBag3Line } from "react-icons/ri";
 import { MdOutlineCancel } from "react-icons/md";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { customer } from "../store/Customer";
+import { toast } from 'react-toastify';
 
 const HeaderUser = () => {
   const { t } = useTranslation();
   const [showUser, setShowUser] = useState(false);
+  const [infoCustomer, setInfoCustomer] = useState({});
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.customer.infoCustomer);
+  useEffect(() => {
+    setInfoCustomer(user);
+  }, [user]);
 
   const navLinkClass = ({ isActive }) => {
     return isActive ? "nav-link-activated" : "null";
@@ -24,6 +35,14 @@ const HeaderUser = () => {
 
   const handleClickShowUser = () => {
     setShowUser(!showUser);
+  };
+
+  const logOut = () => {
+    localStorage.clear();
+    dispatch(customer.actions.clearInfoCustomer());
+    handleClickShowUser();
+    toast.success("Logout successfully!")
+    navigate("/", { replace: true });
   };
 
   return (
@@ -58,11 +77,14 @@ const HeaderUser = () => {
           <AiOutlineShoppingCart className="icon-header" />
         </Link>
 
-        <FiUser
-          className="icon-header"
-          style={{ cursor: "pointer" }}
-          onClick={() => handleClickShowUser()}
-        />
+        {Object.keys(infoCustomer).length !== 0 ? (
+          <FiUser
+            className="icon-header"
+            style={{ cursor: "pointer" }}
+            onClick={() => handleClickShowUser()}
+          />
+        ) : null}
+
         <div
           className={
             showUser
@@ -70,7 +92,7 @@ const HeaderUser = () => {
               : "d-none header-info-user flex-column"
           }
         >
-          <Link className="link-user">
+          <Link to="/account" className="link-user">
             <FiUser className="icon-header" />{" "}
             <span>&nbsp;Manager My Account</span>
           </Link>
@@ -86,7 +108,12 @@ const HeaderUser = () => {
             <AiOutlineStar className="icon-header" />
             <span>&nbsp;Whishlist</span>
           </Link>
-          <Link className="link-user">
+          <Link
+            onClick={() => {
+              logOut();
+            }}
+            className="link-user"
+          >
             <BiLogOut className="icon-header" />
             <span>&nbsp;Logout</span>
           </Link>

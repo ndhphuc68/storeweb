@@ -9,16 +9,48 @@ import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import ButtonLoader from "../../../components/ButtonLoader";
+import validator from "validator";
+import { Authorization } from "../../../services/authen";
+import { useDispatch } from "react-redux";
+import { customer } from "../../../store/Customer";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const [inputs, setInputs] = useState({});
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
+
+  const handleLogin = () => {
+    setLoading(true);
+    if (validator.isEmpty(inputs.username)) {
+      return false;
+    } else if (validator.isEmpty(inputs.password)) {
+      return false;
+    } else {
+      Authorization.login(inputs)
+        .then((response) => {
+          if (response.success) {
+            localStorage.setItem("token", response.data.token);
+            localStorage.setItem("userId", response.data.userId);
+            dispatch(customer.actions.getInfoCustomer(response.data));
+            toast.success("Login successfully!");
+            setLoading(false);
+            navigate("/", { replace: true });
+          }
+        })
+        .catch((err) => {});
+    }
+  };
+
   return (
     <LayoutUser>
       <div className="login-container">
@@ -34,12 +66,20 @@ const Login = () => {
                 id="standard-search"
                 label="Email or Phone Number"
                 variant="standard"
+                onChange={({ target }) =>
+                  setInputs((state) => ({ ...state, username: target.value }))
+                }
+                value={inputs.username ? inputs.username : ""}
               />
               <FormControl variant="standard">
                 <InputLabel htmlFor="standard-adornment-password">
                   Password
                 </InputLabel>
                 <Input
+                  onChange={({ target }) =>
+                    setInputs((state) => ({ ...state, password: target.value }))
+                  }
+                  value={inputs.password ? inputs.password : ""}
                   id="standard-adornment-password"
                   type={showPassword ? "text" : "password"}
                   endAdornment={
@@ -56,8 +96,15 @@ const Login = () => {
                 />
               </FormControl>
               <div className="d-flex align-items-center justify-content-between">
-                <button className="button-login">Create Account</button>
-                <Link className="forget-pass" to="/">Forget Password?</Link>
+                <ButtonLoader
+                  className="button-login d-flex justify-content-center align-items-center"
+                  loading={loading}
+                  onClick={handleLogin}
+                  title="Create Account"
+                />
+                <Link className="forget-pass" to="/">
+                  Forget Password?
+                </Link>
               </div>
             </div>
           </div>

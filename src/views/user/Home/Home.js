@@ -16,6 +16,10 @@ import Category from "../../../components/Category";
 import NewArrivalItem from "../../../components/NewArrivalItem";
 import Image from "../../../styles/image";
 import { AiOutlineArrowUp } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { Customers } from "../../../services/customer";
+import { customer } from "../../../store/Customer";
 
 const slideImages = [
   {
@@ -219,6 +223,34 @@ const Service = () => {
 
 const Home = (props) => {
   const { t } = useTranslation();
+  const userId = localStorage.getItem("userId");
+  const dispatch = useDispatch();
+  const infoCustomer = useSelector((state) => state.customer.infoCustomer);
+
+  useEffect(() => {
+    Customers.profile(userId)
+      .then((response) => {
+        console.log(response);
+        if (response.success) {
+          dispatch(customer.actions.getInfoCustomer(response.data));
+        }
+      })
+      .catch((error) => {});
+  }, []);
+
+  const handleProfile = async () => {
+    console.log("userId", userId);
+    if (userId) {
+      await Customers.profile(userId)
+        .then((response) => {
+          console.log(response);
+          if (response.success) {
+            dispatch(customer.actions.getInfoCustomer(response.data));
+          }
+        })
+        .catch((error) => {});
+    }
+  };
 
   const handleScrollTop = () => {
     window.scrollTo({
